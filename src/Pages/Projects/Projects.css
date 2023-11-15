@@ -1,0 +1,240 @@
+.projects{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3em;
+}
+
+.projects-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+
+.project{
+    max-width: 550px;
+    width: 47%;
+    min-width: 300px;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    background-color: var(--main-color);
+    box-shadow: -2px 2px 4px var(--icon-color);
+}
+.project-left{
+    background-color: blue;
+    width: 45%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.project-profile{
+    background-color: blueviolet;
+    width: 100%;
+    height: 90%;
+}
+
+.project-image{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    
+}
+
+.project-buttons{
+    height: 10%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+.project-btn{
+    display: inline-block;
+    height: 100%;
+    width: 50%;
+    background-color: black;
+    text-decoration: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+}
+
+.project-btn-live{
+    background-color: var(--main-color);
+}
+.pj-icon{
+    font-size: 20px;
+}
+.line{
+    width: 100%;
+    border:1px solid rgba(0, 0, 0, 0.134);
+}
+.project-title{
+    margin-top: .5em;
+}
+.project-description{
+    width: 90%;
+    line-height: 145%;
+    color: rgba(255, 254, 254, 0.855);
+
+}
+.project-right{
+    height: 100%;
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.project-detail{
+    width: 100%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    color: white;
+}
+
+.project-feedback{
+    align-self: self-end;
+    display: flex;
+    align-items: center;
+    padding: 0 2em;
+    justify-content: space-between;
+    width: 100%;
+    height: 10%;
+    background-color: white;
+}
+
+.project-fd{
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.fd-icon{
+    font-size: 24px;
+    color: rgba(0, 0, 0, 0.457);
+    cursor: pointer;
+}
+
+.fd-icon:hover,
+.fd-icon:focus{
+    color: rgba(0, 0, 0, 0.684);
+    transition: 0.5s ease-in;
+}
+
+.project-nav-buttons{
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.project-nav-buttons-outer{
+    padding: 5px 5px;
+    height: 44px;
+    width: 285px;
+    justify-content: center;
+    border: 1px solid var(--main-color);
+    box-shadow: 0px 0px 19px #e5f5ef;
+}
+
+.project-nav-buttons-inner{
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+    box-shadow: 0px 0px 15px #a3ffdd;
+}
+
+.nav-btn{
+    cursor: pointer;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+
+
+.nav-btn-container-prev{
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    padding: 0.3em 1em;
+    background-color: var(--main-color);
+}
+
+.nav-btn-container-next{
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    padding: 0.3em 1em;
+    background-color: var(--main-color);
+}
+
+.nav-btn-container:focus,
+.nav-btn-container:hover{
+    cursor: pointer;
+    transition: 0.5s ease-in;
+    opacity: 0.7;
+}
+
+
+
+
+@media screen and (max-width:1100px){
+    .projects{
+        width: 100%;
+        padding: 0 2em;
+    }
+    .projects-container{
+        justify-content: center;
+    }
+    .project-feedback{
+        width: 100%;
+        padding: 0 .2em;
+    }
+    .fd-icon, .pj-icon{
+        font-size: 1.125rem;
+    }
+
+    .project + .project{
+        display: none;
+    }
+    .project{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:550px){
+    .projects{
+        width: 100%;
+        padding: 0 1em;
+    }
+    .project{
+        height: 600px;
+        width: 100%;
+        flex-direction: column;
+    }
+    .project-left, .project-right{
+        height: 50%;
+        width: 100%;
+    }
+    .project-btn-live{
+        background-color: white;
+        color: black;
+    }
+    .project-feedback{
+        height: 30px;
+    }
+
+    .project-description{
+        font-size: 1rem;
+    }
+}

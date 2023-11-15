@@ -1,0 +1,151 @@
+header{
+    width: 100%;
+    margin-bottom: 1em;
+    
+}
+
+nav{
+    height: 53px;
+    width: 85%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.logo{
+    font-weight: 500;
+    color: var(--main-color);
+    cursor: pointer;
+}
+.nav-options-container{
+    height: 53px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 2em;
+    font-size: 1.25rem;
+}
+
+.nav-option{
+    font-weight: 350;
+    height: 100%;
+    width: fit-content;
+    padding: 0 0.5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.nav-option a{
+    text-decoration: none;
+    color: black;
+}
+
+.nav-option:focus,
+.nav-option:hover{
+    font-weight: 500;
+    border-bottom: 2px solid var(--main-color);
+    transition: ease-out 0.2s;
+}
+.menu-icon{
+    display: none;
+}
+
+.nav-options-container-mobile{
+    display: none;
+}
+.close-icon{
+    display: none;
+}
+@media screen and (max-width:1100px) {
+    nav{
+        width: 100%;
+        padding: 0 2em;
+    }
+   
+    
+}
+
+@keyframes slideMenu{
+    from{
+        right:-300px;
+    }
+
+    to{
+        right:0;
+    }
+
+}
+
+@media screen and (max-width:950px){
+    nav{
+        width: 100%;
+        padding: 0 2em;
+    }
+    .close-icon{
+        display: block;
+        font-size: 2rem;
+        cursor: pointer;
+    }
+    .close-icon:focus,
+    .close-icon:hover{
+        opacity: 0.6;
+        transition: 0.5s ease-out;
+    }
+
+    .nav-options-container{
+        display: none;
+    }
+    .nav-options-container-mobile{
+        animation-name: slideMenu;
+        animation-duration: 0.5s;
+        animation-fill-mode: forwards;
+        animation-timing-function: ease-out;
+
+        z-index: 10;
+        display: flex;
+        position: absolute;
+        top: 53px;
+        right: 0;
+        padding: 1em 1em;
+        width: clamp(200px, 300px, 400px);
+        height: fit-content;
+        background-color: var(--main-color);
+        flex-direction: column;
+        align-items: baseline;
+        box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.418);
+    }
+
+    .nav-option{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1em;
+    }
+ 
+    .nav-option a{
+        color: white;
+    }
+
+    .nav-option:focus,
+    .nav-option:hover{
+        transition: 0.5s ease-out;
+        font-weight: 700;
+        border: none;
+    }
+
+    .menu-icon{
+        display: block;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+    .menu-icon:focus,
+    .menu-icon:hover{
+        opacity: 0.6;
+        transition: 0.5s ease-out;
+    }
+    
+    .nv-icon{
+        font-size: 1.5rem;
+        color: white;
+    }
+}

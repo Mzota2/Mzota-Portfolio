@@ -1,0 +1,169 @@
+.home{
+    width: 85%;
+    margin:0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.home-hero{
+    max-width:510px;
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+.big-text{
+    font-size: 4.5rem;
+    font-weight: 500;
+}
+
+.subtext{
+    margin-top: 2em;
+    line-height: 150%;
+}
+
+.home-button-container{
+    display: flex;
+    align-items: center;
+    gap: 2em;
+}
+.hire-btn{
+    font-size: 1.125rem;
+    padding: 0.65em 2em;
+    border: none;
+    outline: none;
+    color: white;
+    background-color: var(--main-color);
+    cursor: pointer;
+}
+.more-info-btn{
+    background-color: white;
+    color: black;
+    border-radius: 100px;
+    border: 1px solid var(--main-color);
+
+}
+.hire-btn:hover,
+.hire-btn:focus{
+    color: black;
+    border: none;
+    transition: 0.5s ease-out;
+    background-color: var(--hover-color);
+
+}
+
+.home-profile{
+    position: relative;
+}
+.home-box{
+    height: 440px;
+    width: 200px;
+    box-shadow: 3px 0px 8px rgba(0, 0, 0, 0.357);
+    background-image: linear-gradient(to bottom, var(--main-color), var(--gradient-color));
+}
+
+.home-profile-container{
+    position: absolute;
+    right: 50%;
+    top: calc((440px - 390px) / 2) ;
+    height: 390px;
+    width: 322px;
+    background-image: url('../../assets/prof.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-bottom-left-radius: 20px;
+    box-shadow: 3px 0px 8px rgba(0, 0, 0, 0.257);
+}
+
+@media screen and (max-width:1100px){
+    .home{
+        width: 100%;
+        padding: 0 2em;
+    }
+}
+
+@media screen and (max-width:900px){
+    .home{
+        flex-direction: column;
+        align-items: center;
+        gap: 2em;
+    }
+    .home-hero{
+        width: 100%;
+        order: 1;
+        text-align: center;
+        align-items: center;
+    }
+    .home-profile{
+        height: 250px;
+        width: 100%;
+        display: flex;
+    }
+    .home-profile-container{
+        order: 1;
+        top: 0;
+        left:calc(50% - 62.5px);
+        width: 250px;
+        height: 250px;
+        border-radius:50%;
+        box-shadow: -3px 0px 6px rgba(0, 0, 0, 0.257);
+    
+    }
+    .home-box{
+        order: 2;
+        position: absolute;
+        right: calc(50% - 62.5px);
+        width: 250px;
+        height: 250px;
+        border-radius:50%;
+        box-shadow: -3px 0px 6px rgba(0, 0, 0, 0.257);
+    }
+    
+    .big-text{
+        font-size: 3rem;
+    }
+}
+@media screen and (max-width:383px){
+ 
+    .home{
+        padding: 0;
+    }
+    
+    .home-hero{
+        padding: 0 1em;
+    }
+
+    .big-text{
+        font-size: 2.5rem;
+    }
+    .home-button-container{
+        gap: 7px;
+    }
+
+    .hire-btn{
+        padding: 0.4em 1.5em;
+    }
+
+    .home-profile-container{
+        order: 1;
+        top: 0;
+        left:calc(50% - 125px);
+        width: 250px;
+        height: 250px;
+        border-radius:50%;
+        box-shadow: -3px 0px 6px rgba(0, 0, 0, 0.257);
+    
+    }
+    .home-box{
+        order: 2;
+        position: absolute;
+        right: calc(50% - 125px);
+        width: 250px;
+        height: 250px;
+        border-radius:50%;
+        box-shadow: -3px 0px 6px rgba(0, 0, 0, 0.257);
+    }
+    
+}

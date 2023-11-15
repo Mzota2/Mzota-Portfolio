@@ -1,0 +1,212 @@
+.contact{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3em;
+}
+
+.contact-container{
+    width: 100%;
+    height: 465px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.contact-form{
+    width: 45%;
+    min-width: 300px;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+.field{
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+}
+
+label{
+    font-size: 0.9375rem;
+    color: rgba(0, 0, 0, 0.354);
+}
+
+.input-field{
+    width: 100%;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid var(--icon-color);
+    font-size: 1rem;
+    font-weight: 200;
+    color: rgba(90, 89, 89, 0.668);
+    box-shadow: 0 1px 1px var(--icon-color);
+}
+
+.input-field:focus,
+.input-field:hover{
+    transition: 0.5s ease-in;
+    box-shadow: 0 1.5px 1.5px var(--icon-color);
+}
+.message-container{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    width: 100%;
+}
+.message-input-field{
+    resize: none;
+    padding: 1em 1em;
+    border: 1px solid var(--icon-color);
+}
+.send-btn{
+    cursor: pointer;
+    margin-left: auto;
+    height:60px;
+    width: 60px;
+    border-radius: 50%;
+    background-color: var(--main-color);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    border: none;
+    outline: none;
+
+}
+
+.send-icon{
+    color: white;
+    font-size: 1.875rem;
+}
+
+.send-btn:focus,
+.send-btn:hover{
+    transition: 0.5s ease-in;
+    opacity: 0.6;
+}
+
+.contact-info{
+    position: relative;
+    width: 40%;
+    height: 100%;
+    background-image: url('../../assets/contact.jpg');
+    background-size: cover;
+    padding: 2em 2em;
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+}
+
+.background-overlay{
+    top: 0;
+    right: 0;
+    z-index: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color:hsla(158, 73%, 38%, 0.702) ;
+
+}
+
+.contac-info-container{
+    height: 100%;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.contact-title{
+    text-align: center;
+    color: white;
+}
+.contact-info-top-container{
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 3em;
+}
+
+.contact-details-container{
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+.ct-icon{
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: white;
+}
+.contact-detail{
+    display: flex;
+    gap: 1em;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.844);
+}
+
+.contact-social{
+    width: 50%;
+    min-width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ct-icon:focus,
+.ct-icon:hover{
+    color: var(--icon-color);
+    transition: 0.4s ease-in;
+}
+
+@media screen and (max-width:700px){
+    .contact-container{
+        height: fit-content;
+        flex-direction: column;
+        gap: 3em;
+    }
+
+    .contact-form, .contact-info{
+        width: 100%;
+     
+    }
+
+    .contac-info-container{
+        gap: 3em;
+    }
+
+    .contact-info-top-container{
+        gap: 2em;
+    }
+
+    .contact-details-container{
+        gap: 1em;
+
+    }
+
+    .ct-icon{
+        font-size: 1.125rem;
+    }
+
+
+
+}
+@media screen and (max-width:500px){
+    .send-btn{
+        height: 50px;
+        width: 50px;
+    }
+
+    .send-icon{
+        font-size: 1.3rem;
+    }
+}
+@media screen and (max-width:382px){
+    .contact{
+        width: 100%;
+        padding: 0 1em;
+    }
+    
+}

@@ -1,0 +1,11 @@
+.footer-text{
+    font-size: 1.125rem;
+    color: rgba(0, 0, 0, 0.525);
+    text-align: center;
+}
+
+.footer-bar{
+    height: 7px;
+    width: 100%;
+    background-color: var(--main-color);
+}
