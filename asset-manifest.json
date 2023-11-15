@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/Mzota-Portfolio/static/css/main.ec68c7b2.css",
+    "main.js": "/Mzota-Portfolio/static/js/main.484d769b.js",
+    "static/media/contact.jpg": "/Mzota-Portfolio/static/media/contact.1c58fda6ff456e49d4d6.jpg",
+    "static/media/desktop-design.jpg": "/Mzota-Portfolio/static/media/desktop-design.0abf2c21751411dc2f7a.jpg",
+    "static/media/prof.jpg": "/Mzota-Portfolio/static/media/prof.b0da70410e9068d05162.jpg",
+    "index.html": "/Mzota-Portfolio/index.html",
+    "main.ec68c7b2.css.map": "/Mzota-Portfolio/static/css/main.ec68c7b2.css.map",
+    "main.484d769b.js.map": "/Mzota-Portfolio/static/js/main.484d769b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ec68c7b2.css",
+    "static/js/main.484d769b.js"
+  ]
+}
