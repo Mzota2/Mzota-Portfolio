@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/Mzota-Portfolio/static/css/main.ec68c7b2.css",
-    "main.js": "/Mzota-Portfolio/static/js/main.484d769b.js",
+    "main.css": "/Mzota-Portfolio/static/css/main.b20219bd.css",
+    "main.js": "/Mzota-Portfolio/static/js/main.cc29a9e1.js",
     "static/media/contact.jpg": "/Mzota-Portfolio/static/media/contact.1c58fda6ff456e49d4d6.jpg",
     "static/media/desktop-design.jpg": "/Mzota-Portfolio/static/media/desktop-design.0abf2c21751411dc2f7a.jpg",
     "static/media/prof.jpg": "/Mzota-Portfolio/static/media/prof.b0da70410e9068d05162.jpg",
     "index.html": "/Mzota-Portfolio/index.html",
-    "main.ec68c7b2.css.map": "/Mzota-Portfolio/static/css/main.ec68c7b2.css.map",
-    "main.484d769b.js.map": "/Mzota-Portfolio/static/js/main.484d769b.js.map"
+    "main.b20219bd.css.map": "/Mzota-Portfolio/static/css/main.b20219bd.css.map",
+    "main.cc29a9e1.js.map": "/Mzota-Portfolio/static/js/main.cc29a9e1.js.map"
   },
   "entrypoints": [
-    "static/css/main.ec68c7b2.css",
-    "static/js/main.484d769b.js"
+    "static/css/main.b20219bd.css",
+    "static/js/main.cc29a9e1.js"
   ]
 }
