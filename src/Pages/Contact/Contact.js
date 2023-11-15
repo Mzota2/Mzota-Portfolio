@@ -22,8 +22,8 @@ function Contact() {
             </div>
 
             <div className='phone-field field'>
-              <label htmlFor="email">Phone</label>
-              <input className='phone-input input-field' type="textarea" name='phone' id='phone' />
+              <label htmlFor="phone">Phone</label>
+              <input className='phone-input input-field' type="tel" name='phone' id='phone' />
             </div>
 
             <div className='message-field field'>

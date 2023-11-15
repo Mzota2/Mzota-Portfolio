@@ -37,9 +37,7 @@ label{
     width: 100%;
     border: none;
     outline: none;
-    border-bottom: 1px solid var(--icon-color);
     font-size: 1rem;
-    font-weight: 200;
     color: rgba(90, 89, 89, 0.668);
     box-shadow: 0 1px 1px var(--icon-color);
 }
@@ -47,7 +45,8 @@ label{
 .input-field:focus,
 .input-field:hover{
     transition: 0.5s ease-in;
-    box-shadow: 0 1.5px 1.5px var(--icon-color);
+    box-shadow: none;
+    border-bottom: 1px solid var(--main-color);
 }
 .message-container{
     display: flex;
@@ -182,12 +181,12 @@ label{
     }
 
     .contact-details-container{
-        gap: 1em;
+        gap: 1.5em;
 
     }
 
     .ct-icon{
-        font-size: 1.125rem;
+        font-size: 1.3rem;
     }
 
 
