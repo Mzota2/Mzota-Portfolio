@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/Mzota-Portfolio/static/css/main.65368887.css",
-    "main.js": "/Mzota-Portfolio/static/js/main.dea1aa5f.js",
+    "main.css": "/Mzota-Portfolio/static/css/main.fc7dfb54.css",
+    "main.js": "/Mzota-Portfolio/static/js/main.f72ecebc.js",
     "static/media/contact.jpg": "/Mzota-Portfolio/static/media/contact.1c58fda6ff456e49d4d6.jpg",
     "static/media/prof.jpg": "/Mzota-Portfolio/static/media/prof.b0da70410e9068d05162.jpg",
     "index.html": "/Mzota-Portfolio/index.html",
-    "main.65368887.css.map": "/Mzota-Portfolio/static/css/main.65368887.css.map",
-    "main.dea1aa5f.js.map": "/Mzota-Portfolio/static/js/main.dea1aa5f.js.map"
+    "main.fc7dfb54.css.map": "/Mzota-Portfolio/static/css/main.fc7dfb54.css.map",
+    "main.f72ecebc.js.map": "/Mzota-Portfolio/static/js/main.f72ecebc.js.map"
   },
   "entrypoints": [
-    "static/css/main.65368887.css",
-    "static/js/main.dea1aa5f.js"
+    "static/css/main.fc7dfb54.css",
+    "static/js/main.f72ecebc.js"
   ]
 }
