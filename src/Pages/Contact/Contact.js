@@ -1,7 +1,33 @@
 import React from 'react'
 import './Contact.css';
+import axios from 'axios';
+import { appUrl } from '../../Helpers';
+import Message from '../../Components/Message/Message';
 
 function Contact() {
+  const [contactInfo, setContactInfo] = React.useState({
+    contactLocation:'',
+    contactEmail:'',
+    contactPhone:''
+
+  })
+
+
+  const getContactInfo = async()=>{
+    try {
+      const res = await axios.get(`${appUrl}contactInfo`);
+      const data = await res.data;
+      setContactInfo(data[0]);
+
+    } catch (error) {
+      console.log(error);
+    }
+    
+  }
+
+  React.useEffect(()=>{
+    getContactInfo();
+  },[])
   return (
     <section id='Contact'>
       <div className="section contact">
@@ -9,33 +35,8 @@ function Contact() {
         
         <div className="contact-container">
 
-          <form action="" className="contact-form">
-
-            <div className='name-field field'>
-              <label htmlFor="name">Your Name</label>
-              <input className='name-input input-field' type="text" name='name' id='name' />
-            </div>
-
-            <div className='email-field field'>
-              <label htmlFor="email">Email Address</label>
-              <input className='email-input input-field' type="email" name='email' id='email' />
-            </div>
-
-            <div className='phone-field field'>
-              <label htmlFor="phone">Phone</label>
-              <input className='phone-input input-field' type="tel" name='phone' id='phone' />
-            </div>
-
-            <div className='message-field field'>
-              <div className='message-container'>
-                <label htmlFor="message">Message</label>
-                <textarea name="message"  id="message" className='message-input-field input-field' cols="1" rows="5"></textarea>
-              </div>
-             
-              <button className='send-btn'><i class="far send-icon fa-paper-plane"></i></button>
-            </div>
-
-          </form>
+         {/* here */}
+         <Message/>
 
           <div className="contact-info">
             <div className='background-overlay'></div>
@@ -46,17 +47,17 @@ function Contact() {
                 
                 <div className="contact-details-container">
                   <div className="contact-detail">
-                    <i class="fas ct-icon fa-map-marker-alt"></i>
-                    <p className="contact-location">Blantyre, Chilomoni Nthukwa</p>
+                    <i className="fas ct-icon fa-map-marker-alt"></i>
+                    <p className="contact-location">{contactInfo?.contactLocation}</p>
                   </div>
 
                   <div className="contact-detail">
-                    <i class="fas ct-icon fa-envelope"></i>
-                    <p className="contact-location">emzota@gmail.com</p>
+                    <i className="fas ct-icon fa-envelope"></i>
+                    <p className="contact-location">{contactInfo?.contactEmail}</p>
                   </div>
                   <div className="contact-detail">
-                    <i class="fas ct-icon fa-phone-square-alt"></i>
-                    <p className="contact-location">(+265) 981819389</p>
+                    <i className="fas ct-icon fa-phone-square-alt"></i>
+                    <p className="contact-location">{`(+265) ${contactInfo?.contactPhone}`}</p>
                   </div>
 
                 </div>
@@ -64,10 +65,10 @@ function Contact() {
              
 
               <div className="contact-social">
-                <i class="fab ct-icon fa-linkedin"></i>
-                <i class="fab ct-icon fa-facebook-square"></i>
-                <i class="fab ct-icon fa-instagram-square"></i>
-                <i class="fab ct-icon fa-twitter-square"></i>
+                <i className="fab ct-icon fa-linkedin"></i>
+                <i className="fab ct-icon fa-facebook-square"></i>
+                <i className="fab ct-icon fa-instagram-square"></i>
+                <i className="fab ct-icon fa-twitter-square"></i>
               </div>
             </div>
           </div>

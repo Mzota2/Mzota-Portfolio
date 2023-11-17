@@ -23,11 +23,17 @@
     justify-content: space-between;
 }
 
+
 .skill-bar{
     height: 12px;
     width: 100%;
     border-radius: 100px;
     background-color: var(--icon-color);
+}
+.skill-bar:hover{
+    animation: animate;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
 }
 .skill-bar-rating-high{
     background-color: var(--main-color);
@@ -43,6 +49,8 @@
     font-weight: 700;
     letter-spacing: 2px;
 }
+
+
 
 @media screen and (max-width:600px){
     .skills{

@@ -42,7 +42,7 @@ function NavBar() {
             </ul>:<></>
             }
             {
-              mobileMenu?<MdClose onClick={handleClickMenu} className='close-icon'></MdClose>:<i onClick={handleClickMenu} class="menu-icon fas fa-bars"></i>
+              mobileMenu?<MdClose onClick={handleClickMenu} className='close-icon'></MdClose>:<i onClick={handleClickMenu} className="menu-icon fas fa-bars"></i>
 
             }
             
