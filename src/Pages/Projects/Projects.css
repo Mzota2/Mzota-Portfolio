@@ -25,6 +25,7 @@
     flex-direction: column;
     align-items: center;
     gap: 3em;
+    
 }
 
 .projects-container{
@@ -32,6 +33,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
     
 }
 
@@ -48,6 +50,7 @@
 }
 
 .project{
+    margin-top: 2em;
     position: relative;
     max-width: 550px;
     width: 47%;
@@ -221,7 +224,11 @@
     opacity: 0.7;
 }
 
-
+.view-all-btn{
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
 
 
 @media screen and (max-width:1100px){

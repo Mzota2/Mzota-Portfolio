@@ -21,6 +21,12 @@ function Projects() {
     isDisplay:false,
     projectID:''
   });
+
+  const [ViewAll, setViewAll] = React.useState({
+    message:'View all',
+    isViewAll:false
+  });
+
   const isMobile = useMediaQuery('(max-width:1100px)');
   console.log(isMobile);
 
@@ -30,6 +36,44 @@ function Projects() {
     animate:''
   });
 
+
+
+  function handleViewAll(){
+    setViewAll(prev =>{
+      return{
+        ...prev,
+        isViewAll:true,
+        message:'View less'
+        
+      }
+    });
+    setFilterIndex(prev =>{
+      return{
+        ...prev,
+        startIndex:0,
+        endIndex:projects?.length
+      }
+    })
+  }
+
+  function handleViewLess(){
+    setViewAll(prev =>{
+      return{
+        ...prev,
+        isViewAll:false,
+        message:'View All'
+        
+      }
+    });
+    setFilterIndex(prev =>{
+      return{
+        ...prev,
+        startIndex:0,
+        endIndex:isMobile?1:2
+      }
+    })
+  }
+  
 
   function handleDisplayCommentBox(id){
     setDisplayCommentBox(prev =>{
@@ -135,25 +179,30 @@ function Projects() {
   }
 
   React.useEffect(()=>{
-    if(isMobile){
-      setFilterIndex(prev =>{
-        return{
-          ...prev,
-          startIndex:0,
-          endIndex:1
-        }
-      })
-    }
-    else{
-      setFilterIndex(prev =>{
-        return{
-          ...prev,
-          startIndex:0,
-          endIndex:2
-        }
-      })
 
+    function setMobile(){
+      if(isMobile){
+        setFilterIndex(prev =>{
+          return{
+            ...prev,
+            startIndex:0,
+            endIndex:1
+          }
+        })
+      }
+      else{
+        setFilterIndex(prev =>{
+          return{
+            ...prev,
+            startIndex:0,
+            endIndex:2
+          }
+        })
+  
+      }
     }
+   
+    setMobile();
     getProjects();
   
   }, [isProjectLiked, displayCommentBox , isMobile]);
@@ -167,9 +216,10 @@ function Projects() {
         <h2 className='section-title'>MY <br /> PROJECTS.</h2>
         
         <div className="projects-container">
-
+          
             {
-              projects?.slice(filterIndex.startIndex, filterIndex.endIndex).map((project, index)=>{
+
+            projects?.slice(filterIndex.startIndex, filterIndex.endIndex).map((project, index)=>{
                 const {projectName, projectLikes, projectDescription, projectComments, projectShares, projectImage, projectLiveLink, projectGitHubLink} = project;
                 return(
                   <div key={project._id} className={`project ${filterIndex.animate}`}>
@@ -227,25 +277,28 @@ function Projects() {
           
 
         </div>
-
-        <div className='project-nav-buttons project-nav-buttons-outer'>
-          <div className="project-nav-buttons-inner project-nav-buttons">
-
-            <div onClick={handlePrev} role='button' className="nav-btn-container-prev nav-btn-container" aria-roledescription='previous projects'>
-            <i  className="fas nav-btn fa-chevron-left"></i>
+          {
+            ViewAll.isViewAll?<></>:<div className='project-nav-buttons project-nav-buttons-outer'>
+            <div className="project-nav-buttons-inner project-nav-buttons">
+  
+              <div onClick={handlePrev} role='button' className="nav-btn-container-prev nav-btn-container" aria-roledescription='previous projects'>
+              <i  className="fas nav-btn fa-chevron-left"></i>
+              </div>
+  
+              <div onClick={handleNext}  role='button' className="nav-btn-container-next nav-btn-container" aria-roledescription='next projects'>
+              <i className="fas nav-btn fa-chevron-right"></i>
+              </div>
+              
+              
             </div>
-
-            <div onClick={handleNext}  role='button' className="nav-btn-container-next nav-btn-container" aria-roledescription='next projects'>
-            <i className="fas nav-btn fa-chevron-right"></i>
-            </div>
-            
             
           </div>
-          
-        </div>
+          }
+        
+          <button onClick={ViewAll.isViewAll?handleViewLess:handleViewAll} className='view-all-btn hire-btn'><i class={`fa-solid pj-icon ${ViewAll.isViewAll?'fa-chevron-up':'fa-chevron-down'}`}></i>{ViewAll.message}</button>
 
       </div>
-
+      {/* <i class="fa-solid fa-chevron-down"></i> */}
     </section>
   )
 }

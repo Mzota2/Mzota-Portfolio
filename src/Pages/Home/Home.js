@@ -53,8 +53,8 @@ function Home() {
         </div>
 
         <div className='home-button-container'>
-          <button className='hire-btn'>Hire me</button>
-          <button className='hire-btn more-info-btn'>More info</button>
+          <a role='button' href='#Contact' className='hire-btn'>Hire me</a>
+          <a role='button'href='#Contact' className='hire-btn more-info-btn'>More info</a>
         </div>
 
         </div>

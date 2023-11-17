@@ -39,7 +39,7 @@ function About() {
           <h2 className='section-title'>ABOUT ME</h2>
           <p className='about-description'>{about.description}</p>
 
-          <button className='hire-btn'>Hire me</button>
+          <a role='button' href='#Contact' className='hire-btn'>Hire me</a>
         </div>
         
         

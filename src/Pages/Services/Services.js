@@ -84,7 +84,7 @@ function Services() {
 
         
 
-        <button className='hire-btn'>Hire me</button>
+        <a role='button' href='#Contact' className='hire-btn'>Hire me</a>
 
       </div>
     </section>
