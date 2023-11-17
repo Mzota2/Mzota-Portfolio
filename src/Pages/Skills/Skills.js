@@ -53,7 +53,7 @@ function Skills() {
               return(
                 <div key={skill.skillTitle} className="skill">
                   <p className='skill-title'>{skillTitle}</p> 
-                  <div className='skill-bar'><div className='skill-bar skill-bar-rating-low' style={{width:`${skillRating}%`}}></div></div>
+                  <div className='skill-bar'><div className={`skill-bar skill-bar-rating-${skillRating<55?'low':skillRating<75?'mid':'high'}`} style={{width:`${skillRating}%`}}></div></div>
                   <p className='skill-rating'>{`${skillRating}%`}</p>
               </div>
               )

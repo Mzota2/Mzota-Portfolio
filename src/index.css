@@ -18,6 +18,9 @@ html{
   scroll-behavior:smooth;
   overflow-x:hidden;
 }
+p{
+  line-height: 1.5em;
+}
 
 :root{
   --main-color:#1AA875 ;

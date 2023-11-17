@@ -12,11 +12,13 @@ import Share from '../../Components/Share/Share';
 import useMediaQuery from '@mui/material/useMediaQuery';
 function Projects() {
   const[projects, setProjects] = React.useState();
-  const [isProjectLiked, setIsProjectLiked] = React.useState(false);
+  const [ProjectLiked, setProjectLiked] = React.useState({isLiked:false, projectID:null});
   const [displayCommentBox, setDisplayCommentBox] = React.useState({
     isDisplay:false,
     projectID:''
   });
+
+  const [likeID, setLikeID] = React.useState(null);
   const [displayShare, setDisplayShare] = React.useState({
     isDisplay:false,
     projectID:''
@@ -96,7 +98,10 @@ function Projects() {
   }
 
   function handleLike(id){
+
     try {
+      setLikeID(id)
+     
       if(projects){
         const foundProject = projects.filter(project => project._id === id);
         if(foundProject){
@@ -105,13 +110,19 @@ function Projects() {
          
           const updatedProject = {
             ...project,
-            projectLikes:isProjectLiked? projectLikes-1:projectLikes+1
+            projectLikes:ProjectLiked.isLiked && ((id === ProjectLiked.projectID) || (ProjectLiked.projectID ===null))? projectLikes-1:projectLikes+1
           }
           
 
           axios.put(`${appUrl}project/${id}`, {...updatedProject})
           .then((res)=>{
-            setIsProjectLiked(!isProjectLiked);
+            setProjectLiked(prev =>{
+              return{
+                ...prev,
+                isLiked:!ProjectLiked.isLiked,
+                projectID:id
+              }
+            });
             const data = res.data;
 
           }).
@@ -181,7 +192,16 @@ function Projects() {
   React.useEffect(()=>{
 
     function setMobile(){
-      if(isMobile){
+      if((isMobile && ViewAll.isViewAll) || (!isMobile && ViewAll.isViewAll)){
+        setFilterIndex(prev =>{
+          return{
+            ...prev,
+            startIndex:0,
+            endIndex:projects?.length
+          }
+        })
+      }
+      else if((isMobile && !ViewAll.isViewAll)){
         setFilterIndex(prev =>{
           return{
             ...prev,
@@ -190,7 +210,7 @@ function Projects() {
           }
         })
       }
-      else{
+      else if(!isMobile && !ViewAll.isViewAll){
         setFilterIndex(prev =>{
           return{
             ...prev,
@@ -205,7 +225,7 @@ function Projects() {
     setMobile();
     getProjects();
   
-  }, [isProjectLiked, displayCommentBox , isMobile]);
+  }, [ProjectLiked, displayCommentBox , isMobile]);
 
  
   return (
@@ -254,7 +274,7 @@ function Projects() {
                       <p   onClick={()=>{handleLike(project._id)}}  className='project-fd project-likes'>
 
                         {
-                          isProjectLiked?<i style={{color:'red'}} className="fa-solid fd-icon fa-heart"></i>:<i className="far fd-icon fa-heart"></i>
+                          ProjectLiked.isLiked && project._id === likeID ?<i style={{color:'red'}} className="fa-solid fd-icon fa-heart"></i>:<i className="far fd-icon fa-heart"></i>
                         }
                         
                       
