@@ -1,37 +1,40 @@
 import axios from 'axios'
 import React from 'react'
 import { appUrl } from '../../Helpers';
-import {Formik} from 'formik'
+import {Formik, useFormik,} from 'formik'
 import { Schema } from '../Schema/Schema';
 import './Message.css';
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
+import {message} from 'antd'
 
 function Message() {
+    const msg = message;
     const [phone, setPhone] = React.useState('98');
-
-    function handleOnChangePhone(e){
-        setPhone(e.target.value)
-    }
-
+    const [initialValues, setInitialValues] = React.useState({
+        contactName:'',
+        contactEmail:'',
+        contactMessage:''
+    })
     const handleSendMessage = async(message)=>{
         try {
-
+            
             const res = await axios.post(`${appUrl}contact`, {...message});
             const data = await res.data;
-            console.log(data);
+            msg.success('👋 Thanks for the message. We will contact you asap.');
             
         } catch (error) {
+            msg.error('Try submitting the message again !')
             console.log(error);
         }
     }
 
-    const onSubmit = (values, action)=>{
-        console.log(values)
-        handleSendMessage(values);
-        console.log('submitted');
-        console.log(phone)
-    }
+    // const onSubmit = (values, action)=>{
+    //     console.log(values)
+        
+    //     values = {...initialValues}
+        
+    // }
 
    
 
@@ -39,20 +42,22 @@ function Message() {
     <Formik
         validationSchema={Schema}
         initialValues={{
-            contactEmail:'',
-            contactMessage:'',
-            contactName:''
+            ...initialValues
         }}
 
-        onSubmit={onSubmit}
+        onSubmit={async (values, { resetForm }) => {
+            await handleSendMessage(values);
+            resetForm()
+          }}
     >
         {({handleBlur, handleSubmit, touched, errors, handleChange, values, isSubmitting})=>(
+            
                 <form noValidate onSubmit={handleSubmit} className="contact-form">
 
                     <div className='name-field field'>
                         <label htmlFor="contactName">Your Name</label>
                         <input className='name-input input-field' type="text" name='contactName' id='contactName' value={values.contactName} onChange={handleChange} />
-                        {errors.contactName && touched.contactName && <p className='message-error'>{errors.contactName}</p>}
+                        {errors.contactName && touched.contactName &&  <p className='message-error'>{errors.contactName}</p>}
                     </div>
 
                     <div className='email-field field'>
