@@ -3,6 +3,7 @@ import './Contact.css';
 import axios from 'axios';
 import { appUrl } from '../../Helpers';
 import Message from '../../Components/Message/Message';
+import Loader from '../../Components/Loader/Loader';
 
 function Contact() {
   const [contactInfo, setContactInfo] = React.useState({
@@ -28,8 +29,11 @@ function Contact() {
   React.useEffect(()=>{
     getContactInfo();
   },[])
+
+
   return (
     <section id='Contact'>
+      {<Loader displayClass ={contactInfo?'loader--hidden':''} />}
       <div className="section contact">
         <h2 className='section-title'>GET <br /> IN TOUCH</h2>
         

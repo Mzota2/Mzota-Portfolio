@@ -2,6 +2,7 @@ import React from 'react'
 import './About.css';
 import axios from 'axios';
 import { appUrl } from '../../Helpers';
+import Loader from '../../Components/Loader/Loader';
 
 function About() {
   const [about, setAbout] = React.useState({
@@ -29,10 +30,10 @@ function About() {
     getAbout();
   }, [])
 
-
+ 
   return (
     <section id='About'>
-
+      {<Loader displayClass ={about?'loader--hidden':''} />}
       <div className="about section">
 
         <div className="about-container">

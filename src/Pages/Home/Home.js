@@ -3,6 +3,7 @@ import './Home.css';
 import profileImage from '../../assets/prof.jpg';
 import axios from 'axios';
 import { appUrl } from '../../Helpers';
+import Loader from '../../Components/Loader/Loader';
 
 function Home() {
   const [home, setHome] = React.useState({
@@ -16,8 +17,6 @@ function Home() {
     backgroundImage:`${appUrl}uploads/${home?.profileImage.slice(8)}`
   }
 
-
-  
   const getHome = async()=>{
     try {
         await axios.get(`${appUrl}home`).then(async(res)=>{
@@ -39,8 +38,10 @@ function Home() {
     getHome();
   }, [])
 
+
   return (
     <section id='Home'>
+      {<Loader displayClass ={home?'loader--hidden':''} />}
       <div className='home'>
       <div className='home-hero'>
 

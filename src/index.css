@@ -31,3 +31,13 @@ p{
   --mid-rating-color:#CCBD36 ;
   --icon:#eefcf7 ;
 }
+
+@keyframes loading {
+  from{
+    transform: rotate(0turn);
+  }
+  to{
+    transform: rotate(1turn);
+  }
+  
+}

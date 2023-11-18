@@ -3,6 +3,7 @@ import './Skills.css';
 import axios from 'axios';
 import {appUrl} from '../../Helpers.js';
 import FileDownload from 'js-file-download';
+import Loader from '../../Components/Loader/Loader.js';
 
 function Skills() {
 
@@ -37,9 +38,11 @@ function Skills() {
     getSkills();
   }, [])
 
+
   //condition styling
   return (
     <section id='Skills'>
+      {<Loader displayClass ={skills?'loader--hidden':''} />}
       <div className="skills section">
         <h2 className='section-title'>MY <br /> SKILLS.</h2>
 

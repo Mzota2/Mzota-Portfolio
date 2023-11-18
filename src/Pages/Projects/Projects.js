@@ -10,6 +10,8 @@ import { appUrl } from '../../Helpers';
 import Comment from '../../Components/Comment/Comment';
 import Share from '../../Components/Share/Share';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import Loader from '../../Components/Loader/Loader';
+import {message} from 'antd';
 function Projects() {
   const[projects, setProjects] = React.useState();
   const [ProjectLiked, setProjectLiked] = React.useState({isLiked:false, projectID:null});
@@ -150,7 +152,8 @@ function Projects() {
       setProjects(prevData =>{
         return [...data]
       });
-      
+      const msg = message;
+      msg.success('👋 Thanks for the comment.')
     } catch (error) {
       console.log(error);
     }
@@ -228,10 +231,10 @@ function Projects() {
   
   }, [ProjectLiked, displayCommentBox , isMobile]);
 
- 
+
   return (
     <section id='Projects'>
-      
+      {<Loader displayClass ={projects?'loader--hidden':''} />}
       <div className='section projects'>
 
         <h2 className='section-title'>MY <br /> PROJECTS.</h2>

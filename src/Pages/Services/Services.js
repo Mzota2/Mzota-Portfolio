@@ -4,6 +4,7 @@ import {BiLogoFigma} from 'react-icons/bi';
 import {SiAppwrite} from 'react-icons/si'
 import axios from 'axios';
 import { appUrl } from '../../Helpers';
+import Loader from '../../Components/Loader/Loader';
 
 function Services() {
   const [services, setServices] =  React.useState([{
@@ -27,8 +28,11 @@ function Services() {
   React.useEffect(()=>{
     getServices();
   }, [])
+
+
   return (
     <section id='Services'>
+      {<Loader displayClass ={services?'loader--hidden':''} />}
       <div className="section services">
         <h2 className='section-title'>SERVICES</h2>
 
