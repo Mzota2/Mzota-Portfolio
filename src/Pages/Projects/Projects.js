@@ -76,6 +76,7 @@ function Projects() {
     })
   }
   
+  //"homepage": "https://Mzota2.github.io/Mzota-Portfolio/",
 
   function handleDisplayCommentBox(id){
     setDisplayCommentBox(prev =>{
