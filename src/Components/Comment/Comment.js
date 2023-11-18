@@ -2,6 +2,7 @@ import React from 'react'
 import './Comment.css';
 import axios from 'axios';
 import { appUrl } from '../../Helpers';
+import { message } from 'antd';
 
 function Comment({projectID, projects, displayCommentBox, setDisplayCommentBox}) {
 
@@ -36,10 +37,11 @@ function Comment({projectID, projects, displayCommentBox, setDisplayCommentBox})
                     ...prev,
                     isDisplay:false
                   }
+                  
                 });
-                console.log(comment);
                 const data = res.data;
-                console.log(data);
+                const msg = message;
+                msg.success('👋 Thanks for the comment.')
 
                 })
                 .catch(error =>{

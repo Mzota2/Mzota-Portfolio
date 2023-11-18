@@ -152,8 +152,6 @@ function Projects() {
       setProjects(prevData =>{
         return [...data]
       });
-      const msg = message;
-      msg.success('👋 Thanks for the comment.')
     } catch (error) {
       console.log(error);
     }
