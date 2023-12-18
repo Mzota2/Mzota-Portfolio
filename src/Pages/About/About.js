@@ -5,6 +5,7 @@ import { appUrl } from '../../Helpers';
 import Loader from '../../Components/Loader/Loader';
 
 function About() {
+  const [isLoading ,setIsLoading] = React.useState(false);
   const [about, setAbout] = React.useState({
     description:'',
     resume:'',
@@ -12,6 +13,7 @@ function About() {
   });
   const getAbout =  async()=>{
     try {
+      setIsLoading(true);
       await axios.get(`${appUrl}about`)
       .then(async(res)=>{
         const data = await res.data;
@@ -22,6 +24,8 @@ function About() {
       
     } catch (error) {
       console.log(error);
+    }finally{
+      setIsLoading(false)
     }
     
   }
@@ -30,10 +34,12 @@ function About() {
     getAbout();
   }, [])
 
+  if(isLoading){
+    return <Loader/>
+  }
  
   return (
     <section id='About'>
-      {<Loader displayClass ={about?'loader--hidden':''} />}
       <div className="about section">
 
         <div className="about-container">

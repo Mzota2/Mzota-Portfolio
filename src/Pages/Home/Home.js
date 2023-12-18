@@ -13,12 +13,11 @@ function Home() {
 
   });
 
-  const profStyle = {
-    backgroundImage:`${appUrl}uploads/${home?.profileImage.slice(8)}`
-  }
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const getHome = async()=>{
     try {
+        setIsLoading(true);
         await axios.get(`${appUrl}home`).then(async(res)=>{
           const data = await res.data;
           console.log(data);
@@ -30,6 +29,8 @@ function Home() {
       
     } catch (error) {
       console.log(error);
+    }finally{
+      setIsLoading(false);
     }
     
   }
@@ -38,10 +39,12 @@ function Home() {
     getHome();
   }, [])
 
+  if(isLoading){
+    return <Loader/>
+  }
 
   return (
     <section id='Home'>
-      {<Loader displayClass ={home?'loader--hidden':''} />}
       <div className='home'>
       <div className='home-hero'>
 
@@ -62,7 +65,6 @@ function Home() {
 
         <div className='home-profile'>
 
-          
           <div className='home-box'>
           </div>
 
@@ -72,6 +74,8 @@ function Home() {
 
 
         </div>
+
+        
       </div>
       
 

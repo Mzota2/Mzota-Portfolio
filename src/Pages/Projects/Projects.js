@@ -13,14 +13,19 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import Loader from '../../Components/Loader/Loader';
 import {message} from 'antd';
 function Projects() {
+
+  const [isLoading, setIsLoading] = React.useState(false);
+
   const[projects, setProjects] = React.useState();
-  const [ProjectLiked, setProjectLiked] = React.useState({isLiked:false, projectID:null});
   const [displayCommentBox, setDisplayCommentBox] = React.useState({
     isDisplay:false,
     projectID:''
   });
 
+  const [lStore, setLstore] = React.useState(JSON.parse(localStorage.getItem('lMzotaProjects')));
+
   const [likeID, setLikeID] = React.useState(null);
+
   const [displayShare, setDisplayShare] = React.useState({
     isDisplay:false,
     projectID:''
@@ -32,13 +37,17 @@ function Projects() {
   });
 
   const isMobile = useMediaQuery('(max-width:1100px)');
-  console.log(isMobile);
-
+ 
   const [filterIndex, setFilterIndex] = React.useState({
     startIndex:0,
     endIndex:isMobile? 1:2,
     animate:''
   });
+
+  //localstorage for
+  // project id, liked or not.
+
+  
 
 
 
@@ -100,7 +109,27 @@ function Projects() {
     });
   }
 
-  function handleLike(id){
+  async function handleLike(id){
+
+    //checking if we have project in local storage;
+     let lProjects = JSON.parse(localStorage.getItem('lMzotaProjects'));
+
+     if(!lProjects){
+      localStorage.setItem('lMzotaProjects', JSON.stringify([{projectId:id, liked:true}]));
+     }
+     else{
+      const foundProject = lProjects.find((project)=>project.projectId === id);
+      if(foundProject){
+        foundProject.liked = !foundProject.liked;
+        localStorage.setItem('lMzotaProjects', JSON.stringify(lProjects));
+        setLstore(lProjects)
+      }else{
+        lProjects = [...lProjects, {projectId:id, liked:true}];
+        localStorage.setItem('lMzotaProjects', JSON.stringify(lProjects));
+        setLstore(lProjects);
+      }
+     }
+    
 
     try {
       setLikeID(id)
@@ -110,28 +139,21 @@ function Projects() {
         if(foundProject){
           let [project] = foundProject;
           let {projectLikes} = project;
-         
-          const updatedProject = {
-            ...project,
-            projectLikes:ProjectLiked.isLiked && ((id === ProjectLiked.projectID) || (ProjectLiked.projectID ===null))? projectLikes-1:projectLikes+1
-          }
-          
+          let lStoreProject = lProjects?.find((project)=> project.projectId === id);
 
-          axios.put(`${appUrl}project/${id}`, {...updatedProject})
-          .then((res)=>{
-            setProjectLiked(prev =>{
-              return{
-                ...prev,
-                isLiked:!ProjectLiked.isLiked,
-                projectID:id
-              }
-            });
-            const data = res.data;
-
-          }).
-          catch((error)=>{
+          Promise.resolve(
+            {
+              ...project,
+              projectLikes:lStoreProject?lStoreProject?.liked? projectLikes+1:projectLikes-1 : {projectId:id, liked:true}.liked? projectLikes+1:projectLikes-1
+            }
+          ).then(async(updatedProject)=>{
+            const response = await axios.put(`${appUrl}project/${id}`, {...updatedProject})
+            const {data} = response;
+            getProjects();
+          }).catch((error)=>{
             console.log(error);
-          })
+          });
+      
           //update the backend
         }
 
@@ -140,13 +162,15 @@ function Projects() {
     } catch (error) {
       console.log(error);
       
+    }finally{
+
     }
 
   }
   
   const getProjects = async()=>{
     try {
-      console.log('running')
+      setIsLoading(true)
       const res = await axios.get(`${appUrl}project`);
       const data = await res.data;
       setProjects(prevData =>{
@@ -154,6 +178,8 @@ function Projects() {
       });
     } catch (error) {
       console.log(error);
+    }finally{
+      setIsLoading(false);
     }
     
   }
@@ -223,16 +249,26 @@ function Projects() {
   
       }
     }
-   
     setMobile();
+   
+  }, [displayCommentBox , isMobile]);
+
+
+  React.useEffect(()=>{
     getProjects();
-  
-  }, [ProjectLiked, displayCommentBox , isMobile]);
+  }, [])
+ 
 
+  React.useEffect(()=>{
 
+  }, [lStore])
+
+  if(isLoading){
+    return <Loader/>
+  }
   return (
     <section id='Projects'>
-      {<Loader displayClass ={projects?'loader--hidden':''} />}
+      
       <div className='section projects'>
 
         <h2 className='section-title'>MY <br /> PROJECTS.</h2>
@@ -243,6 +279,9 @@ function Projects() {
 
             projects?.slice(filterIndex.startIndex, filterIndex.endIndex).map((project, index)=>{
                 const {projectName, projectLikes, projectDescription, projectComments, projectShares, projectImage, projectLiveLink, projectGitHubLink} = project;
+                const lProjects = JSON.parse(localStorage.getItem('lMzotaProjects'));
+                const foundProject = lProjects?.find((item)=> item.projectId === project._id);
+                
                 return(
                   <div key={project._id} className={`project ${filterIndex.animate}`}>
                     {
@@ -276,7 +315,7 @@ function Projects() {
                       <p   onClick={()=>{handleLike(project._id)}}  className='project-fd project-likes'>
 
                         {
-                          ProjectLiked.isLiked && project._id === likeID ?<i style={{color:'red'}} className="fa-solid fd-icon fa-heart"></i>:<i className="far fd-icon fa-heart"></i>
+                          foundProject && foundProject?.liked?<i style={{color:'red'}} className="fa-solid fd-icon fa-heart"></i>:<i className="far fd-icon fa-heart"></i>
                         }
                         
                       
@@ -284,7 +323,7 @@ function Projects() {
                       <p onClick={()=>handleDisplayCommentBox(project._id)} className='project-fd project-comments'><i className="far fd-icon fa-comment">
                         
                         </i>{projectComments?.length}</p>
-                      <p onClick={()=>handleDisplayShare(project._id)} className='project-fd project-shares'><i className="fas fd-icon  fa-share-alt"></i> {projectShares}
+                      <p onClick={()=>handleDisplayShare(project._id)} className='project-fd project-shares'><i className="fas fd-icon  fa-share-alt"></i> 
                       
                       </p>
                       <a href="#Contact"><i className="far fd-icon fa-question-circle"></i></a>

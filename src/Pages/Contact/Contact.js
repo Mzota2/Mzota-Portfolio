@@ -13,15 +13,19 @@ function Contact() {
 
   })
 
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const getContactInfo = async()=>{
     try {
+      setIsLoading(true)
       const res = await axios.get(`${appUrl}contactInfo`);
       const data = await res.data;
       setContactInfo(data[0]);
 
     } catch (error) {
       console.log(error);
+    }finally{
+      setIsLoading(false);
     }
     
   }
@@ -30,10 +34,12 @@ function Contact() {
     getContactInfo();
   },[])
 
+  if(isLoading){
+    return <Loader/>
+  }
 
   return (
     <section id='Contact'>
-      {<Loader displayClass ={contactInfo?'loader--hidden':''} />}
       <div className="section contact">
         <h2 className='section-title'>GET <br /> IN TOUCH</h2>
         

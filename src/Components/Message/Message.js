@@ -7,45 +7,45 @@ import './Message.css';
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 import {message} from 'antd'
+import { FaLeaf } from 'react-icons/fa';
 
 function Message() {
-    const msg = message;
+    
+    const [isLoading, setIsLoading] = React.useState(false);
+
     const [phone, setPhone] = React.useState('98');
-    const [initialValues, setInitialValues] = React.useState({
+    const [messageSent, setMessageSent] = React.useState({
         contactName:'',
         contactEmail:'',
-        contactMessage:''
+        contactMessage:[]
     })
     const handleSendMessage = async(message)=>{
         try {
-            
+            setIsLoading(true)
             const res = await axios.post(`${appUrl}contact`, {...message});
             const data = await res.data;
-            msg.success('👋 Thanks for the message. We will contact you asap.');
+            message.success('👋 Thanks for the message. We will contact you asap.');
             
         } catch (error) {
-            msg.error('Try submitting the message again !')
+            message.error('Try submitting the message again !')
             console.log(error);
+        }finally{
+            setIsLoading(false)
         }
     }
-
-    // const onSubmit = (values, action)=>{
-    //     console.log(values)
-        
-    //     values = {...initialValues}
-        
-    // }
-
    
 
   return (
     <Formik
         validationSchema={Schema}
         initialValues={{
-            ...initialValues
+            contactName:'',
+            contactEmail:'',
+            contactMessage:''
         }}
 
         onSubmit={async (values, { resetForm }) => {
+        
             await handleSendMessage(values);
             resetForm()
           }}
@@ -80,7 +80,7 @@ function Message() {
                             {errors.contactMessage && touched.contactMessage && <p className='message-error'>{errors.contactMessage}</p>}
                         </div>
                     
-                        <button type='submit' className='send-btn'><i className="far send-icon fa-paper-plane"></i></button>
+                        <button disabled={isLoading} type='submit' className='send-btn'><i className="far send-icon fa-paper-plane"></i></button>
                     </div>
 
                 </form>

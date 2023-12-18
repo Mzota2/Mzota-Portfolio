@@ -47,5 +47,10 @@
         padding: 0 1em;
     }
 
+    .about-description{
+        max-width: 90%;
+        text-align: justify;
+    }
+
 
 }

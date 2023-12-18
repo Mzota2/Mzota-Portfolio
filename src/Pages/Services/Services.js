@@ -12,15 +12,20 @@ function Services() {
     serviceDescription:''
   }]);
 
+  const [isLoading, setIsLoading] = React.useState(false);
+
   const getServices = async()=>{
 
     try {
+      setIsLoading(true);
       const res= await axios.get(`${appUrl}service`);
       const data = await res.data;
       setServices(data);
       
     } catch (error) {
       console.log(error);
+    }finally{
+      setIsLoading(false);
     }
     
   }
@@ -29,10 +34,12 @@ function Services() {
     getServices();
   }, [])
 
-
+  if(isLoading){
+    return <Loader/>
+  }
+  
   return (
     <section id='Services'>
-      {<Loader displayClass ={services?'loader--hidden':''} />}
       <div className="section services">
         <h2 className='section-title'>SERVICES</h2>
 

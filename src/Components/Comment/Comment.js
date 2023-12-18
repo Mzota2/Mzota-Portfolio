@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import './Comment.css';
 import axios from 'axios';
 import { appUrl } from '../../Helpers';
@@ -6,9 +6,9 @@ import { message } from 'antd';
 
 function Comment({projectID, projects, displayCommentBox, setDisplayCommentBox}) {
 
-    
-
     let [comment, setComment] = React.useState('');
+
+    const commentBox = useRef(null);
 
     function onChangeComment(e){
         setComment(prevComment =>{
@@ -45,7 +45,7 @@ function Comment({projectID, projects, displayCommentBox, setDisplayCommentBox})
 
                 })
                 .catch(error =>{
-                console.log(error);
+                message.error('Try again later! Something went wrong')
                 })
           }
     
@@ -56,7 +56,17 @@ function Comment({projectID, projects, displayCommentBox, setDisplayCommentBox})
     
       }
 
-      React.useState(()=>{
+      function closeComment(e){
+        if(!commentBox.current?.contains(e.target) && !displayCommentBox){
+          setDisplayCommentBox(false);
+        }
+      }
+
+      React.useEffect(()=>{
+
+        document.addEventListener('mousedown', closeComment);
+
+        return ()=> document.removeEventListener('mousedown', closeComment);
 
       }, [])
   return (
@@ -70,7 +80,7 @@ function Comment({projectID, projects, displayCommentBox, setDisplayCommentBox})
       });
     }} className="comment">
         
-        <div className='comment-container' >
+        <div ref={commentBox} className='comment-container' >
             <hr className='line' />
             <form action="">
                 <label htmlFor="comment">Comment
