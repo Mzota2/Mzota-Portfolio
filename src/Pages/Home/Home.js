@@ -1,6 +1,6 @@
 import React from 'react'
 import './Home.css';
-import profileImage from '../../assets/prof.jpg';
+import profileImage from '../../assets/portfolio.jpg';
 import axios from 'axios';
 import { appUrl } from '../../Helpers';
 import Loader from '../../Components/Loader/Loader';
@@ -69,7 +69,7 @@ function Home() {
           </div>
 
           <div className='home-profile-container'>
-            <img src={`${appUrl}uploads/${home?.profileImage.slice(8)}`} className='profile-image' alt="my profile" />
+            <img src={`${appUrl}uploads/${home?.profileImage.slice(8)}` || profileImage} className='profile-image' alt="my profile" />
           </div>
 
 
