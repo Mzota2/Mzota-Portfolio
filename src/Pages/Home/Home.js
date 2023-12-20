@@ -69,7 +69,7 @@ function Home() {
           </div>
 
           <div className='home-profile-container'>
-            <img src={`${appUrl}uploads/${home?.profileImage.slice(8)}` || profileImage} className='profile-image' alt="my profile" />
+            <img src={`${appUrl}uploads/${home?.profileImage.slice(8)}`} className='profile-image' alt="my profile" />
           </div>
 
 
