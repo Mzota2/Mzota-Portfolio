@@ -114,15 +114,18 @@ nav{
         align-items: baseline;
         box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.418);
     }
-
-    .nav-option{
+.nav-options-container-mobile .nav-option{
         display: flex;
         flex-direction: row;
         align-items: center;
         gap: 1em;
+       
     }
  
-    .nav-option a{
+    a{
+        text-decoration: none;
+    }
+    .nav-option{
         color: white;
     }
 

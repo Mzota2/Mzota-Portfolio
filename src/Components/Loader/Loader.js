@@ -6,7 +6,10 @@ import Box from '@mui/material/Box';
 function Loader({displayClass}) {
   return (
     <div className={`p-loader`}>
-       <CircularProgress color='success' />
+      <Box>
+        <CircularProgress color='success' />
+      </Box>
+      
     </div>
    
   );

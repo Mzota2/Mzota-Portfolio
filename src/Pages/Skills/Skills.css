@@ -42,12 +42,22 @@
     width: 100%;
     border-radius: 100px;
     background-color: var(--icon-color);
+    cursor: pointer;
 }
-.skill-bar:hover{
-    animation: animate;
-    animation-duration: 1s;
-    animation-fill-mode: forwards;
+
+
+.skill-bar-outer:hover .skill-bar-inner{
+    cursor: pointer;
+    animation-name: loadSkill;
+    animation-duration: 2s;
 }
+
+.skill-bar-outer:focus .skill-bar-inner{
+    cursor: pointer;
+    animation-name: loadSkill;
+    animation-duration: 2s;
+}
+
 .skill-bar-rating-high{
     background-color: var(--main-color);
 }

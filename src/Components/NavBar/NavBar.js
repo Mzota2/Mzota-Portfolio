@@ -33,12 +33,12 @@ function NavBar() {
             {
               mobileMenu?
               <ul onMouseLeave={handleClose} className='nav-options-container-mobile nav-options-container'>
-                <div className="nav-option"><MdHome className='nv-icon'></MdHome><a href="#Home">Home</a></div>
-                <div className="nav-option"><GoPersonFill className='nv-icon'></GoPersonFill><a href="#About">About</a></div>
-                <div className="nav-option"><GiSkills className='nv-icon'></GiSkills><a href="#Skills">Skills</a></div>
-                <div className="nav-option"><FaProjectDiagram className='nv-icon'></FaProjectDiagram><a href="#Projects">Projects</a></div>
-                <div className="nav-option"><FaTools className='nv-icon'></FaTools><a href="#Services">Services</a></div>
-                <div className="nav-option"><MdContactMail className='nv-icon'></MdContactMail><a href="#Contact">Contact</a></div>
+                <a href='#Home'  className ="nav-option"><MdHome className='nv-icon'></MdHome>Home</a >
+                <a href='#About'  className="nav-option"><GoPersonFill className='nv-icon'></GoPersonFill>About</a >
+                <a href='#Skills'  className="nav-option"><GiSkills className='nv-icon'></GiSkills>Skills</a >
+                <a href='#Projects'  className="nav-option"><FaProjectDiagram className='nv-icon'></FaProjectDiagram>Projects</a >
+                <a href='#Services' className="nav-option"><FaTools className='nv-icon'></FaTools>Services</a >
+                <a href='#ontact' className="nav-option"><MdContactMail className='nv-icon'></MdContactMail>Contact</a >
             </ul>:<></>
             }
             {

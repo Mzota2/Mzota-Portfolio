@@ -15,10 +15,7 @@ const Block =(props)=>{
     skillRating:''
   }]);
   
-
   const [isLoading, setIsLoading] = React.useState(false);
-
-
 
   const getSkills = async()=>{
     try {
@@ -37,13 +34,14 @@ const Block =(props)=>{
 
   React.useEffect(()=>{
     getSkills();
+ 
   }, [])
 
   if(isLoading){
     return <Loader/>
   }
   return(
-    <div ref={forwardedRef} className="skill-list-container">
+    <div className="skill-list-container">
 
         {
           
@@ -51,9 +49,9 @@ const Block =(props)=>{
             const {skillRating, skillTitle} = skill;
       
             return(
-              <div key={skill.skillTitle} className="skill">
+              <div ref={forwardedRef}  key={skill.skillTitle} className="skill">
                 <p className='skill-title'>{skillTitle}</p> 
-                <div className='skill-bar'><div className={`skill-bar ${inViewport?'skill-animate':''} skill-bar-rating-${skillRating<55?'low':skillRating<75?'mid':'high'}`} style={{width:`${skillRating}%`}}></div></div>
+                <div  className='skill-bar skill-bar-outer'><div className={`skill-bar skill-bar-inner ${inViewport?'skill-animate':''} skill-bar-rating-${skillRating<55?'low':skillRating<75?'mid':'high'}`} style={{width:`${skillRating}%`}}></div></div>
                 <p className='skill-rating'>{`${skillRating}%`}</p>
             </div>
             )
@@ -78,15 +76,13 @@ function Skills(props) {
   }
   //condition styling
 
-
-
  
   return (
     <section id='Skills'>
       <div className="skills section">
         <h2 className='section-title'>MY <br /> SKILLS.</h2>
 
-          <ViewPortBlock onEnterViewport={()=>{console.log('entering view port');}} onLeaveViewport={()=>{console.log('leaving port')}} />
+          <ViewPortBlock/>
 
         <button onClick={downloadResume} className='hire-btn'>Download Resume</button>
 
