@@ -22,7 +22,7 @@ Having studied web development for over 2 years I have acquired a myriad of skil
 ## How to find me?
 
 - [Instagram](https://www.instagram.com/mzotacodes/)
-- [Whatsapp]( https://wa.me/265981819389)
+- [Whatsapp]( https://wa.me/265889785341)
 - [Twitter](https://twitter.com/EmmanuelChiram8)
 - [Email](mzchirambo@gmail.com)
 
